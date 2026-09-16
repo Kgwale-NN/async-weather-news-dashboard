@@ -28,7 +28,11 @@ const getJson = async <T>(url: string): Promise<T> => {
         throw new Error(`Request failed with status ${response.status}`)
     }
 
-    return await response.json() as T
+    try {
+        return await response.json() as T
+    } catch {
+        throw new Error("The API returned invalid JSON")
+    }
 }
 
 const runDashboard = async (): Promise<void> => {
@@ -48,7 +52,8 @@ const runDashboard = async (): Promise<void> => {
         })
     } catch (error) {
         const message = error instanceof Error ? error.message : "Unknown error"
-        console.error(`Async/await error: ${message}`)
+        console.error(`Error: ${message}`)
+        process.exitCode = 1
     }
 }
 

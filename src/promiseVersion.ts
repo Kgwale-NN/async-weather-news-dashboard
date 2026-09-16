@@ -44,6 +44,8 @@ const getJson = <T>(url: string): Promise<T> => {
                     reject(new Error("The API returned invalid JSON"))
                 }
             })
+
+            response.on("error", reject)
         }).on("error", reject)
     })
 }
@@ -93,6 +95,8 @@ getJson<WeatherResponse>(weatherUrl)
     .then((fastestResult) => {
         console.log(fastestResult)
     })
-    .catch((error: Error) => {
-        console.error(`Promise error: ${error.message}`)
+    .catch((error: unknown) => {
+        const message = error instanceof Error ? error.message : "Unknown error"
+        console.error(`Error: ${message}`)
+        process.exitCode = 1
     })

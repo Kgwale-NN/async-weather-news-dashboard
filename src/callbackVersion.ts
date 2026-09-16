@@ -39,12 +39,18 @@ const getJson = <T>(url: string, callback: DataCallback<T>): void => {
                 return
             }
 
+            let data: T
             try {
-                callback(null, JSON.parse(body) as T)
+                data = JSON.parse(body) as T
             } catch {
                 callback(new Error("The API returned invalid JSON"))
+                return
             }
+
+            callback(null, data)
         })
+
+        response.on("error", callback)
     }).on("error", (error) => {
         callback(error)
     })
@@ -55,7 +61,8 @@ console.log("Fetching weather and news with callbacks...\n")
 
 getJson<WeatherResponse>(weatherUrl, (weatherError, weather) => {
     if (weatherError || !weather) {
-        console.error(`Weather error: ${weatherError?.message}`)
+        console.error(`Error: Weather request failed: ${weatherError?.message ?? "No weather data returned"}`)
+        process.exitCode = 1
         return
     }
 
@@ -66,7 +73,8 @@ getJson<WeatherResponse>(weatherUrl, (weatherError, weather) => {
 
     getJson<NewsResponse>(newsUrl, (newsError, news) => {
         if (newsError || !news) {
-            console.error(`News error: ${newsError?.message}`)
+            console.error(`Error: News request failed: ${newsError?.message ?? "No news data returned"}`)
+            process.exitCode = 1
             return
         }
 
