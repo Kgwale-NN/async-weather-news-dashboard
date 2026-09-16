@@ -5,7 +5,7 @@ A Node.js and TypeScript learning project that fetches weather data and news hea
 ## Project status
 
 - [x] Sprint 1: Project setup
-- [ ] Sprint 2: Callback version
+- [x] Sprint 2: Callback version
 - [ ] Sprint 3: Promise version
 - [ ] Sprint 4: Async/await version
 - [ ] Sprint 5: Error handling and response consistency
