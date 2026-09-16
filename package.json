@@ -1,0 +1,21 @@
+{
+  "name": "async-weather-news-dashboard",
+  "version": "1.0.0",
+  "description": "Weather and news dashboard demonstrating asynchronous TypeScript patterns",
+  "main": "dist/asyncAwaitVersion.js",
+  "scripts": {
+    "callback": "ts-node src/callbackVersion.ts",
+    "promise": "ts-node src/promiseVersion.ts",
+    "async": "ts-node src/asyncAwaitVersion.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": ["typescript", "async", "weather", "news"],
+  "author": "Kgwale-NN",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
+
