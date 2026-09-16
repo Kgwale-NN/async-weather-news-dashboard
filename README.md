@@ -20,6 +20,14 @@ npm run async
 npm run typecheck
 ```
 
-The three implementations will be completed one sprint at a time.
+Pass a city after `--` to see weather for that place. For example:
+
+```bash
+npm run callback -- "Cape Town"
+npm run promise -- "Cape Town"
+npm run async -- "Cape Town"
+```
+
+The city name is looked up through Open-Meteo's geocoding API. The headlines are sample posts from DummyJSON, not location-based news.
 
 # async-weather-news-dashboard
